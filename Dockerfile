@@ -14,6 +14,8 @@ RUN npm run build
 
 # use nginx as a base image
 FROM nginx
+# expose port 80 in AWS (elastic beanstalk uses this instruction to expose port 80)
+EXPOSE 80
 # copy your build folder over from builder into the folder that nginx serves content from (/usr/share/nginx/html)
 COPY --from=0 /app/build /usr/share/nginx/html
 # when we use nginx as a base image, the container will automatically start up nginx for us, so we don't have add a command to start up nginx
